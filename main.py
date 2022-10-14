@@ -15,29 +15,46 @@ boucle_jeu = True
 
 while boucle_jeu:
     nombre_aleatoire = random.randint(0, 100)
-#
+
+# Variable qui sert à calculer le nombre d'essais pour l'afficher au joueur
     essai = 0
 
-    print("J'ai choisi un chiffre de 1 à 100")
-    print("Essaye de le deviner!")
+#Variable qui permet au joueur de choisir de nombre minimum dans le choix de nombres aléatoires
+    nombre_minimum = int(input("Choisissez le nombre minimum du jeu"))
 
+# Variable qui permet au joueur de choisir de nombre minimum dans le choix de nombres aléatoires
+    nombre_maximum = int(input("Choisissez le nombre maximum du jeu"))
+#Variable qui choisis un nombre aléatoire entre le nombre minum et le nombre maximum choisis par le joueur
+    nombre_choisi = random.randint(nombre_minimum, nombre_maximum)
+
+
+    print("Essayez de deviner le nombre aléatoire entre les bornes de votre choix!")
+
+# Boucle dans laquelle la partie sera jouée, si le joueur termine une partie et decide de recommencer, la boucle recommence
     boucle_essai = True
+
     while boucle_essai:
-
-
-        choix_du_joueur = int(input("Choisissez un nombre de 1 à 100 "))
-
 
         essai = essai + 1
 
-        if choix_du_joueur < nombre_aleatoire:
+        print("Essai numero" ,essai )
+
+#Variable qui sert à faire deviner le nombre aléatoire, le joueur recoit ce message et doit donner une réponse de 1 à 100
+        choix_du_joueur = int(input("Choisissez un nombre"))
+
+#Ce qui arrive si le chiffre est trop petit
+        if choix_du_joueur < nombre_choisi:
             print("Non, ton chiffre est trop petit")
 
-        if choix_du_joueur > nombre_aleatoire:
+#Ce qui arrive si le chiffre est trop grand
+        if choix_du_joueur > nombre_choisi:
             print("Non, ton chiffre est trop grand!")
 
-        if choix_du_joueur == nombre_aleatoire:
-            print("Bonne réponse! J avais effectivement choisi",nombre_aleatoire)
+#Ce qui arrive si le joueur choisis le bon nombre
+        if choix_du_joueur == nombre_choisi:
+            print("Bonne réponse! Le chiffre était",nombre_choisi)
+
+# Variable qui sert à demander au joueur si il veut quitter le code ou rejouer
             rejouer = input("Voulez-vous rejouer?")
             if rejouer == "oui":
                 boucle_essai = False
